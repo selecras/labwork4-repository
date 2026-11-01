@@ -4,6 +4,7 @@ def divisible(num: int, divisor: int | float) -> bool:
         return True
     return False
 
+
 def negative_positive(num: int | float) -> str:
     if num > 0:
         return "положительное"
@@ -12,11 +13,16 @@ def negative_positive(num: int | float) -> str:
     return "ноль"
 
 
-# Ввод чисел
-number = int(input("Введите число: "))
-divisor = int(input("Введите делитель: "))
+# Ввод чисел с проверкой на корректность
+while True:
+    try:
+        number = int(input("Введите число: "))
+        divisor = float(input("Введите делитель: "))
+        break
+    except Exception as e:
+        print("Некорректный ввод")
 
-# Проверка
+# Условие
 if divisible(number, divisor):
     print(f"Число {number} делится на {divisor}")
 else:
