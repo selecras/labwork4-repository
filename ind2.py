@@ -1,21 +1,31 @@
 def convert(num: int | float, base: int, accuracy: int = 0):
-    alp = "0123456789" + "".join(sorted("qwertyuiopasdfghjklzxcvbnm".upper()))
     result = ""
+    if num == 0:
+        return "0"
+    if int(num) == 0:
+        result = "0"
+    alp = "0123456789" + "".join(sorted("qwertyuiopasdfghjklzxcvbnm".upper()))
     flag = 1
+
     if int(num) == num:
         flag = 0
+
     temp = int(num)
+
     while temp > 0:
         result += alp[temp % base]
         temp //= base
+
     result = result[::-1]
-    if flag:
+
+    if flag and accuracy != 0:
         result += "."
         temp = num - int(num)
         for _ in range(accuracy):
             temp *= base
             result += alp[int(temp)]
             temp = temp - int(temp)
+
     return result.strip("0") if "." in result else result
 
 
@@ -46,7 +56,7 @@ while 1:
         while 1:
             try:
                 acc = int(input("Введите желаемую точность (0-16): "))
-                if acc < 0 or acc > 16:
+                if not (16 >= acc >= 0):
                     raise ValueError
                 break
             except Exception:
