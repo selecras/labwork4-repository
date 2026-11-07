@@ -26,7 +26,7 @@ def convert(num: int | float, base: int, accuracy: int = 0):
             result += alp[int(temp)]
             temp = temp - int(temp)
 
-    return result.strip("0") if "." in result else result
+    return result.rstrip("0") if "." in result else result
 
 
 print("Перевод в 2-ую, 8-ую и 16-ую системы счисления")
